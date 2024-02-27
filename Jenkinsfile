@@ -36,7 +36,7 @@ pipeline {
                     def delimages = 'docker image prune -a --force'
                     def drun = "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
                     println "${drun}"
-                    sshagent(['docker-test']) {
+                    sshagent(['VM-APP']) {
                         sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no yunandar-app@103.117.56.235 ${stopcontainer} "
                         sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no yunandar-app@103.117.56.235 ${delcontName}"
                         sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no yunandar-app@103.117.56.235 ${delimages}"
